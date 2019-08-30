@@ -14,6 +14,9 @@ namespace proms.models.common
             public class StkCallback
             {
                 public int ResultCode { set; get; }
+                public string ResultDesc { set; get; }
+                public string CheckoutRequestID { set; get; }
+                public string MerchantRequestID { set; get; }
             }
         }
     }

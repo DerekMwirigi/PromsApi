@@ -20,12 +20,18 @@ namespace proms.api.mpesa
             string payLoad;
             using (var reader = new StreamReader(Request.InputStream))
                 payLoad = reader.ReadToEnd();
-            Response response = new PaymentController().mpesaCallback(JsonConvert.DeserializeObject<STKCallbackResponse>(payLoad), new Commoner(0, Request.QueryString["token"], null, null));
-
+            Dictionary<string, string> dicGetData = JsonConvert.DeserializeObject<Dictionary<string, string>>(Request.QueryString["getData"].Replace("\\", ""));
+            
+            Response response = new PaymentController().mpesaCallback(JsonConvert.DeserializeObject<STKCallbackResponse>(payLoad), JsonConvert.DeserializeObject<Commoner>(JsonConvert.SerializeObject(dicGetData)));
             Response.Clear();
             Response.ContentType = "application/json; charset=utf-8";
             Response.Write(JsonConvert.SerializeObject(response));
             Response.End();
+        }
+
+        public class GetData
+        {
+            public string token { set; get; }
         }
     }
 }

@@ -49,6 +49,49 @@ namespace proms.controllers
             }
             return null;
         }
+
+        protected static Response insertRow(string table, KeyValue[] keyModelPairs)
+        {
+            string sql = "";
+            if (keyModelPairs.Length > 0)
+            {
+                sql = "INSERT INTO " + table + " (";
+                int x = 0;
+                foreach (KeyValue keyModelPair in keyModelPairs)
+                {
+                    x++;
+                    if (x != keyModelPairs.Length && keyModelPairs.Length != 1) { sql += "`" + keyModelPair.key + "`, "; }
+                    else { sql += "`" + keyModelPair.key + "`"; }
+                    
+                }
+                x = 0;
+                sql += ") VALUES(";
+                foreach (KeyValue keyModelPair in keyModelPairs)
+                {
+                    x++;
+                    if (x != keyModelPairs.Length && keyModelPairs.Length != 1) { sql += "'" + keyModelPair.value + "', "; }
+                    else { sql += "'" + keyModelPair.value + "'"; }
+
+                }
+                sql += ");";
+            }
+            try
+            {
+                Response response = openConnection();
+                if (response.status)
+                {
+                    MySqlCommand cmd = new MySqlCommand(sql, (MySqlConnection)response.data);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    reader.Close();
+                    return new Response(true, 1, "Row inserted.", null, null);
+                }
+                return response;
+            }
+            catch (MySqlException ex)
+            {
+                return new Response(true, 0, "Row not inserted.", new string[] { ex.Message }, null);
+            }
+        }
         protected static Response fetchRow(string table, KeyValue[] keyModelPairs)
         {
             string sql = "SELECT * FROM " + table;

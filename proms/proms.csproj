@@ -60,7 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api\auth\signIn.aspx" />
+    <Content Include="api\auth\signUp.aspx" />
     <Content Include="api\mpesa\callback.aspx" />
+    <Content Include="api\payment\fetch.aspx" />
     <Content Include="api\payment\make-payment.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -72,12 +74,26 @@
     <Compile Include="api\auth\signIn.aspx.designer.cs">
       <DependentUpon>signIn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="api\auth\signUp.aspx.cs">
+      <DependentUpon>signUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\auth\signUp.aspx.designer.cs">
+      <DependentUpon>signUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="api\mpesa\callback.aspx.cs">
       <DependentUpon>callback.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="api\mpesa\callback.aspx.designer.cs">
       <DependentUpon>callback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\payment\fetch.aspx.cs">
+      <DependentUpon>fetch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\payment\fetch.aspx.designer.cs">
+      <DependentUpon>fetch.aspx</DependentUpon>
     </Compile>
     <Compile Include="api\payment\make-payment.aspx.cs">
       <DependentUpon>make-payment.aspx</DependentUpon>
@@ -110,6 +126,7 @@
   <ItemGroup>
     <Content Include="config\api.config.json" />
     <Content Include="models\auth\model.config.json" />
+    <None Include="Properties\PublishProfiles\PromsApi.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

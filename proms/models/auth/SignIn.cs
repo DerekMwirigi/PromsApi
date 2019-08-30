@@ -9,5 +9,10 @@ namespace proms.models.auth
     {
         public string uId { set; get; }
         public string uSecret { set; get; }
+
+        public SignIn(string uId, string uSecret)
+        {
+            this.uId = uId; this.uSecret = uSecret;
+        }
     }
 }
