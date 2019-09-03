@@ -19,7 +19,7 @@ namespace proms.utils
             {
                 foreach (KeyValue header in headers)
                 {
-                    request.Headers.Add(header.key, header.value);
+                    request.Headers.Add(header.key, header.value.ToString());
                 }
             }
             request.Method = "POST";

@@ -59,14 +59,39 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="api\account\update.aspx" />
+    <Content Include="api\auth\requestResetPassword.aspx" />
+    <Content Include="api\auth\resetPassword.aspx" />
     <Content Include="api\auth\signIn.aspx" />
     <Content Include="api\auth\signUp.aspx" />
     <Content Include="api\mpesa\callback.aspx" />
     <Content Include="api\payment\fetch.aspx" />
     <Content Include="api\payment\make-payment.aspx" />
+    <Content Include="api\test\payLoad.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\account\update.aspx.cs">
+      <DependentUpon>update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\account\update.aspx.designer.cs">
+      <DependentUpon>update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\auth\requestResetPassword.aspx.cs">
+      <DependentUpon>requestResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\auth\requestResetPassword.aspx.designer.cs">
+      <DependentUpon>requestResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="api\auth\resetPassword.aspx.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\auth\resetPassword.aspx.designer.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="api\auth\signIn.aspx.cs">
       <DependentUpon>signIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -102,6 +127,14 @@
     <Compile Include="api\payment\make-payment.aspx.designer.cs">
       <DependentUpon>make-payment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="api\test\payLoad.aspx.cs">
+      <DependentUpon>payLoad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="api\test\payLoad.aspx.designer.cs">
+      <DependentUpon>payLoad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="controllers\AccountController.cs" />
     <Compile Include="controllers\AuthController.cs" />
     <Compile Include="handlers\DatabaseHandler.cs" />
     <Compile Include="controllers\PaymentController.cs" />

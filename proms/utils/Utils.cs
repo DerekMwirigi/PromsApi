@@ -1,4 +1,5 @@
-﻿using proms.models;
+﻿using Newtonsoft.Json;
+using proms.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,25 @@ namespace proms.utils
 {
     public class Utils
     {
+        public static KeyValue[] generateKeyValueFromJSONString(object cObject)
+        {
+            Dictionary<string, object> myDictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(cObject));
+            KeyValue[] keyValues = new KeyValue[myDictionary.Count];
+            int i = 0;
+            foreach (KeyValuePair<string, object> pair in myDictionary)
+            {
+                if (pair.Value.GetType().FullName == "Newtonsoft.Json.Linq.JObject")
+                {
+                    keyValues[i] = new KeyValue(pair.Key, generateKeyValueFromJSONString(JsonConvert.SerializeObject(pair.Value)));
+                }
+                else
+                {
+                    keyValues[i] = new KeyValue(pair.Key, pair.Value.ToString());
+                }
+                i++;
+            }
+            return keyValues;
+        }
         public static object serializedArrayToObject(object[] data)
         {
             return data[0];
@@ -34,7 +54,7 @@ namespace proms.utils
                 return GetMd5Hash(md5Hash, source);
             }
         }
-        static string GetMd5Hash(MD5 md5Hash, string input)
+        private static string GetMd5Hash(MD5 md5Hash, string input)
         {
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
             StringBuilder sBuilder = new StringBuilder();

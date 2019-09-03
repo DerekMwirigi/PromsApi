@@ -8,9 +8,9 @@ namespace proms.models
     public class KeyValue
     {
         public string key { set; get; }
-        public string value { set; get; }
+        public object value { set; get; }
 
-        public KeyValue(string key, string value)
+        public KeyValue(string key, object value)
         {
             this.key = key;
             this.value = value;
